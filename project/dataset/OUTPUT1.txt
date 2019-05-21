@@ -1,0 +1,6 @@
+Elementi del dataset di costruzione: 65280
+Elementi del dataset di verifica: 400000
+True positives (self-check): 65280
+True negatives: 399802
+False positives: 198
+FPR: 0.000495
