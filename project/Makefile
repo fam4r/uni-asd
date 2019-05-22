@@ -13,7 +13,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-main: $(OBJ)
+main.exe: $(OBJ)
 	$(CC) -o $@ main.c $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
