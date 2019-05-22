@@ -60,8 +60,9 @@ int main (int argc, char* argv[])
    while (fgets((char*)line,LINE_LENGTH,fver)!= NULL)
    {
        memcpy(verification_dataset[i],(uint8_t*)line,ELEM_LENGTH);
-      i++;
+       i++;
    }
+   //printf("%hhu", *construction_dataset[n - 1]);
 
    ////////// COSTRUZIONE DEL FILTRO //////////
 
@@ -121,6 +122,8 @@ bool filediff(FILE* fp1, FILE* fp2)
         ch2 = getc(fp2);
         while(ch1 == '\r') ch1 = getc(fp1);
         while(ch2 == '\r') ch2 = getc(fp2);
+        //while(ch1 == '\r' || ch1 == '\n') ch1 = getc(fp1);
+        //while(ch2 == '\r' || ch2 == '\n') ch2 = getc(fp2);
     }
 
     return true;
