@@ -22,3 +22,9 @@ make
 ./main && echo -n "\n" && cat OUTPUT1.txt && echo "\n" && cat output.txt
 /bin/diff --strip-trailing-cr output.txt OUTPUT1.txt
 ```
+
+### Deliver
+
+```
+zip matricola.zip bloom.c
+```

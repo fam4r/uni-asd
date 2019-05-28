@@ -22,6 +22,7 @@ void insertElem(const uint8_t* elem)
 
 /*
  * Tells if given element is present in the Bloom Filter.
+ * @returns if the element is present or not in the Bloom Filter.
  */
 bool checkElem(const uint8_t* elem)
 {
@@ -41,27 +42,25 @@ bool checkElem(const uint8_t* elem)
  * Allocates space for the Bloom Filter (array of booleans),
  * then calls `insertElem` with each element of the construction set as
  * parameter
+ *
+ * Note: `calloc` call sets allocated memory to zero, so initializates the Bloom
+ * Filter.
  */
 void buildFilter(const uint8_t** dataset)
 {
     int i;
     filter = calloc(m, sizeof(bool));
-    /*
-    filter = malloc(m * sizeof(bool));
-    for(i = 0; i < m; i++) 
-    {
-        filter[i] = 0; // zero-ing Bloom Filter (initialization)
-    }
-    */
 
     for(i = 0; i < n; i++)
     {
         insertElem(dataset[i]);
     }
-
-    //printf("%hhu", (uint8_t)*dataset[n - 1]);
 }
 
+/*
+ * Checks the Bloom Filter consistency with a self-test (should be given the
+ * same dataset as the one used to fill the Bloom Filter itself)
+ */
 void selfCheck(const uint8_t** dataset, FILE* fout)
 {
     int i;
@@ -77,6 +76,11 @@ void selfCheck(const uint8_t** dataset, FILE* fout)
     fprintf(fout, "True positives (self-check): %d\n", tp);
 }
 
+/*
+ * Checks the Bloom Filter consistency with a test (should be given the a
+ * dataset without common elements with the one used to fill the Bloom Filter
+ * itself)
+ */
 void nonElementsCheck(const uint8_t** dataset, FILE* fout)
 {
     int i;
